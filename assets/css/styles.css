@@ -1,0 +1,10 @@
+.img-fluid {
+    height: 100vh;
+    object-fit: cover;
+}
+
+.logo {
+    width: 45%;
+    margin-bottom: 2%;
+
+}
