@@ -1,0 +1,38 @@
+<%- include ('../partials/header') %>
+    <div class="row align-items-center">
+        <div class="col container ms-5">
+            <a href="/"><img src="img/logo.png" class="logo" alt="logo"></a>
+            <h1 class=" display-4">Register!</h1>
+            <h3 class="lead">Enter your details below to sign up.</h3>
+            <form class="row gy-3 gx-3 align-items-left">
+                <div class="col-4">
+                    <label class="form-label fs-4" for="name">Name:</label>
+                    <input type="text" class="form-control form-control-lg" name="name" id="name"
+                        placeholder="Jane Doe">
+                </div>
+                <div class="col-5">
+                    <label class="form-label fs-4" for="username">Username:</label>
+                    <div class="input-group">
+                        <div class="input-group-text">@</div>
+                        <input type="text" class="form-control form-control-lg" name="username" id="username"
+                            placeholder="Username">
+                    </div>
+                </div>
+                <div class="row-auto w-75"><label for="email" class="form-label fs-4">Email</label>
+                    <input type="email" name="email" class="form-control form-control-lg" id="email"
+                        placeholder="name@example.com">
+                </div>
+                <div class="row-auto w-75">
+                    <label for="password" class="form-label fs-4">Password</label>
+                    <input type="password" name="password" class="form-control form-control-lg" id="password"
+                        placeholder="Enter Your Password">
+                </div>
+                <div class="row-auto">
+                    <button class="btn btn-primary btn-lg" type="submit">Register</button>
+                </div>
+            </form>
+        </div>
+        <img src="/img/graph.jpg" class="col img-fluid" alt="...">
+    </div>
+
+    <%- include ('../partials/footer') %>

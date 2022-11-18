@@ -1,18 +1,18 @@
 <%- include ('partials/header') %>
 
-    <div class="row align-items-start">
+    <div class="row align-items-center">
         <div class="col">
-            <div class="container mt-5 ms-5">
-                <img src="img/logo.png" class="logo alt="">
-                <h1 class=" display-4">Welcome to Easy Survey</h1>
+            <div class="container ms-5">
+                <a href="/"><img src="img/logo.png" class="logo" alt="logo"></a>
+                <h1 class=" display-4">Welcome :)</h1>
                 <h3 class="lead">Create surveyes and track feedbacks with ease!</h3>
             </div>
-            <div class="container mt-5 ms-5">
+            <div class="container mt-4 ms-5">
                 <h4>Login or Register To Continue..</h4>
-                <div class="d-grid gap-2 col-6">
-                    <button class="btn btn-primary btn-lg" type="button">Button</button>
-                    <button class="btn btn-outline-info btn-lg" type="button">Button</button>
-                    <div class="mt-1"><button type="button" class="btn btn-link">Vist as a Guest</button></div>
+                <div class="d-grid gap-2 w-75">
+                    <a class="btn btn-primary btn-lg" href="/login" role="button">Login</a>
+                    <a class="btn btn-outline-info btn-lg" href="/register" role="button">Register</a>
+                    <div class="mt-1"><a role="button" class="btn btn-link">Vist as a Guest</a></div>
                 </div>
             </div>
         </div>
