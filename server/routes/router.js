@@ -14,6 +14,12 @@ route.get('/login', (req, res, next) => {
 route.get('/register', (req, res, next) => {
     res.render('pages/register')
 })
+route.get('/surveys', (req, res, next) => {
+    res.render('pages/surveys')
+})
+route.get('/select_survey', (req, res, next) => {
+    res.render('pages/select_survey')
+})
 
 
 module.exports = route;

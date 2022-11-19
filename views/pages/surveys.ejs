@@ -1,3 +1,53 @@
 <%- include ('../partials/header') %>
-    <p>Surveys Page</p>
+    <nav class="navbar navbar-expand bg-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand ms-5" href="/">
+                <img src="/img/logo.png" alt="Bootstrap" width="150">
+            </a>
+            <div class="d-flex me-5">
+                <a class="btn btn-sm btn-success" role="button" href="/select_survey"><i class="fa-solid fa-plus"></i>
+                    Add Survey</a>
+                <a class="btn btn-sm btn-outline-danger ms-2" role="button"> Log Out</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5 w-50">
+        <div class="card text-left">
+            <div class="card-header">
+                posted by: user456
+            </div>
+            <div class="card-body">
+                <h5 class="card-title fs-3">Do you Like this website?</h5>
+                <div class="mb-3">
+                    <textarea class="form-control mt-3" id="exampleFormControlTextarea1" rows="2"
+                        placeholder="Enter Your Response here...."></textarea>
+                </div>
+                <a href="#" class="btn btn-primary" href="#">Submit</a>
+            </div>
+            <div class="card-footer text-muted">
+                Expires 4:00 PM
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5 w-50">
+        <div class="card text-left">
+            <div class="card-header">
+                posted by: user456
+            </div>
+            <div class="card-body">
+                <h5 class="card-title fs-3">Do you Like this website?</h5>
+                <select class="form-select mt-3 mb-3" size="3">
+                    <option selected>Selected</option>
+                    <option value="1">Lorem</option>
+                    <option value="1">Ipsum</option>
+
+                </select>
+                <a href="#" class="btn btn-primary" href="#">Submit</a>
+            </div>
+            <div class="card-footer text-muted">
+                Expires 4:00 PM
+            </div>
+        </div>
+    </div>
+
     <%- include ('../partials/footer') %>
