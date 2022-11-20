@@ -4,6 +4,7 @@
   "description": "This is a group project for COMP 229 submitted by group 2. Fall 2022 Semster. Centennial College.",
   "main": "index.js",
   "scripts": {
+    "build": "your open its built (doesn't do anything, just needed for the cloud)",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Group 2",
