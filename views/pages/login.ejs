@@ -1,24 +1,25 @@
 <%- include ('../partials/header') %>
     <div class="row align-items-center">
-        <div class="col container ms-5">
-            <a href="/"><img src="img/logo.png" class="logo" alt="logo"></a>
+        <div class="col container ms-5 overflow-hidden">
+            <a href="/"><img src="/img/logo.png" class="logo" alt="logo"></a>
             <h1 class=" display-4">Welcome :)</h1>
             <h3 class="lead">Enter your details below to login.</h3>
-            <form action="" class="mt-4">
-                <div class="mt-3 w-75"><label for="email" class="form-label fs-4">Email</label>
-                    <input type="email" name="email" class="form-control form-control-lg" id="email"
-                        placeholder="name@example.com">
-                </div>
-                <div class="mt-3 w-75">
-                    <label for="password" class="form-label fs-4">Password</label>
-                    <input type="password" name="password" class="form-control form-control-lg" id="password"
-                        placeholder="Enter Your Password">
-                </div>
-                <div class="mt-3">
-                    <a class="btn btn-outline-info btn-lg" href="/register" role="button">Create Account</a>
-                    <button class="btn btn-primary btn-lg" type="button">Login</button>
-                </div>
-            </form>
+            <%- include ('../partials/messages') %>
+                <form action="/user/login" method="POST" class="mt-4">
+                    <div class="mt-3 w-75"><label for="email" class="form-label fs-4">Email</label>
+                        <input type="email" name="email" class="form-control form-control-lg" id="email"
+                            placeholder="name@example.com">
+                    </div>
+                    <div class="mt-3 w-75">
+                        <label for="password" class="form-label fs-4">Password</label>
+                        <input type="password" name="password" class="form-control form-control-lg" id="password"
+                            placeholder="Enter Your Password">
+                    </div>
+                    <div class="mt-3">
+                        <a class="btn btn-outline-info btn-lg" href="/user/register" role="button">Create Account</a>
+                        <button class="btn btn-primary btn-lg" type="submit">Login</button>
+                    </div>
+                </form>
         </div>
         <img src="/img/mountain.jpg" class="col img-fluid" alt="...">
     </div>

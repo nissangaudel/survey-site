@@ -6,3 +6,7 @@
 .logo {
     width: 35%;
 }
+
+body {
+    overflow-x: hidden;
+}
