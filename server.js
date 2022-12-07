@@ -6,6 +6,7 @@ const path = require('path');
 const morgan = require('morgan');
 const session = require('express-session');
 const passport = require('passport');
+const User = require('./server/model/user');
 
 const flash = require('connect-flash');
 
@@ -58,12 +59,14 @@ app.use(function (req, res, next) {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
+    res.locals.currentUser = req.user;
     next();
 });
 
 //routes
 app.use('/', routes);
 app.use('/user', require('./server/routes/users'));
+app.use('/api', require('./server/routes/api'));
 
 
 app.listen(PORT, () => {

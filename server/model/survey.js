@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 var surveySchema = mongoose.Schema({
     type: {
         type: String,
-        required: true,
+        //required: true,
     },
     title: {
         type: String,
-        required: true,
+        //required: true,
     },
     choices: {
         type: Array
@@ -15,9 +15,20 @@ var surveySchema = mongoose.Schema({
     creator: {
         type: String
     },
+    created: {
+        type: Date,
+        default: Date.now
+    },
     expires: {
         type: Date,
-        required: true,
+        //required: true
+    },
+    totalResponses: {
+        type: Number,
+        default: 0,
+    },
+    responses: {
+        type: [String]
     }
 });
 
