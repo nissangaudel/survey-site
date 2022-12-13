@@ -1,0 +1,65 @@
+<%- include ('../partials/header') %>
+    <nav class="navbar navbar-expand bg-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand ms-5" href="/">
+                <img src="/img/logo.png" alt="Bootstrap" width="150">
+            </a>
+            <div class="d-flex me-5">
+                <a class="btn btn-sm btn-outline-danger ms-2" role="button" href="/surveys"><i
+                        class="fa-solid fa-xmark"></i>
+                    Quit</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5 w-75">
+        <%- include ('../partials/messages') %>
+            <div class="progress" style="height: 5px;">
+                <div class="progress-bar bg-info" role="progressbar" style="width: 75%;" aria-valuenow="75"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <h1 class=" display-5 mt-5 mb-3">Enter Survey Details:
+            </h1>
+            <form action="/api/survey/edit/<%=surveys[0]._id%>" method="POST" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="title" class="form-labe fs-6 display-5 mb-2">Survey Title:</label>
+                    <input type="text" class="form-control form-control-lg" id="title" name="title"
+                        placeholder="How Good is this website?" value="<%= surveys[0].title %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="expires" class="form-labe fs-6 display-5 mb-2">Expires In:</label>
+                    <input type="text" class="form-control form-control-lg" id="expires" name="expires"
+                        placeholder="YYYY-MM-DD" value="<%= surveys[0].expires.slice(0,10) %>">
+                </div>
+                <% if(surveys[0].type=='MCQ' ) {%>
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label for="option1" class="form-labe fs-6 display-5 mb-2">Option 1:</label>
+                            <input type="text" class="form-control form-control-lg" id="option1" name="option1"
+                                placeholder="Awesome" value="<%= surveys[0].choices[0] %>">
+                        </div>
+                        <div class="col mb-3">
+                            <label for="option2" class="form-labe fs-6 display-5 mb-2">Options 2:</label>
+                            <input type="text" class="form-control form-control-lg" id="option2" name="option2"
+                                placeholder="Good" value="<%= surveys[0].choices[1] %>">
+                        </div>
+                        <div class="col mb-3">
+                            <label for="option3" class="form-labe fs-6 display-5 mb-2">Options 3:</label>
+                            <input type="text" class="form-control form-control-lg" id="option3" name="option3"
+                                placeholder="Not Bad" value="<%= surveys[0].choices[2] %>">
+                        </div>
+                    </div>
+                    <% } %>
+                        <nav class="navbar fixed-bottom">
+                            <div class="container">
+                                <a class="navbar-brand ms-5" href="/">
+                                </a>
+                                <div class="d-flex me-5 mb-4">
+                                    <button class="btn btn-sm btn-primary ms-2" type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </nav>
+            </form>
+    </div>
+
+
+    <%- include ('../partials/footer') %>

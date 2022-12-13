@@ -46,7 +46,6 @@ app.use(
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
-
 app.use(express.static(path.resolve(__dirname, 'assets')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 

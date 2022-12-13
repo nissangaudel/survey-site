@@ -1,0 +1,87 @@
+<%- include ('../partials/header') %>
+    <nav class="navbar navbar-expand bg-light sticky-top d-print-none">
+        <div class="container">
+            <a class="navbar-brand ms-5" href="/">
+                <img src="/img/logo.png" alt="Bootstrap" width="150">
+            </a>
+            <div class="d-flex me-5">
+                <div class="dropdown-center">
+                    <a class="btn btn-sm btn-outline-primary dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="fa-regular fa-user"></i>
+                        <%= currentUser.name %>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" role="button" href="/select_survey">
+                                <i class="fa-solid fa-plus"></i> New Survey</a></li>
+                        <li><a class="dropdown-item" href="/user_surveys/?email=<%=currentUser.email%>" role="button"><i
+                                    class="fa-solid fa-square-poll-vertical"></i> Analytics</a></li>
+                        <li><a class="dropdown-item" href="/user/logout" role="button"><i
+                                    class="fa-solid fa-right-from-bracket"></i> Log Out</a></li>
+                    </ul>
+                </div>
+            </div>
+    </nav>
+
+    <div class="container w-50 d-print-inline">
+        <span class="mt-5 badge text-bg-info"> Survey Question:</span>
+        <h2 class="mt-1 fs-1 fw-normal text-primary">
+            <%= surveys[0].title%>
+        </h2>
+        <h2 class="mt-4 fs-5 fw-light text-secondary">Survey Stats:</h2>
+        <div class="row justify-content-around mt-3">
+            <div class="col-5 bg-light border rounded">
+                <h4 class="ms-3 me-3 mt-4 fs-3 fw-normal">Total Response: <p class="fs-1 fw-bold text-primary">
+                        <%= surveys[0].totalResponses%>
+                    </p>
+            </div>
+            <div class="col-5 bg-light border rounded">
+                <h4 class="ms-3 me-3 mt-4 fs-3 fw-normal">Expires After: <p class="fs-1 fw-bold text-primary">
+                        <%= surveys[1].expiresAfter%> Days
+                    </p>
+            </div>
+        </div>
+        <% if(surveys[0].type==='MCQ' ) {%>
+            <h2 class="mt-4 fs-5 fw-light text-secondary">Votes:</h2>
+            <div class="row justify-content-around mt-3">
+                <div class="col-3 bg-light border rounded">
+                    <h4 class="ms-3 me-3 mt-4 fs-5 fw-normal text-capitalize">
+                        <%= surveys[0].choices[0] %>
+                            <p class="fs-1 fw-bold text-primary ">20%
+                            </p>
+                </div>
+                <div class="col-3 bg-light border rounded">
+                    <h4 class="ms-3 me-3 mt-4 fs-5 fw-normal text-capitalize">
+                        <%= surveys[0].choices[1] %>
+                            <p class="fs-1 fw-bold text-primary">45%
+                            </p>
+                </div>
+                <div class="col-3 bg-light border rounded">
+                    <h4 class="ms-3 me-3 mt-4 fs-5 fw-normal text-capitalize">
+                        <%= surveys[0].choices[2] %>
+                            <p class="fs-1 fw-bold text-primary">35%
+                            </p>
+                </div>
+            </div>
+            <% } %>
+                <% if(surveys[0].type==='QNA' ) { %>
+                    <h2 class="mt-4 fs-5 fw-light text-secondary">List of Responses:</h2>
+                    <div class="mt-3 mb-3">
+                        <% for(count=0; count < surveys[0].responses.length; count++) { %>
+                            <div class="row border rounded ms-4 me-4  mb-3">
+                                <h4 class="ms-3 me-3 mt-4 fs-5 fw-normal text-secondary">Response <%= count+1 %> : <p
+                                            class="fs-6 mt-1 fw-light text-primary">
+                                            <%= (surveys[0].responses)[count] %>
+                                        </p>
+                            </div>
+                            <% } %>
+                    </div>
+                    <% } %>
+                        <div class="row align-items-end">
+                            <button type="button" class="btn btn-outline-primary mt-3 mb-3 d-print-none"
+                                onclick="window.print()">Print
+                                Analytics</button>
+                        </div>
+
+    </div>
+    <%- include ('../partials/footer') %>

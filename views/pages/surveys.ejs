@@ -5,28 +5,63 @@
                 <img src="/img/logo.png" alt="Bootstrap" width="150">
             </a>
             <div class="d-flex me-5">
-                <a class="btn btn-sm btn-outline-primary" href="#">
-                    <i class="fa-regular fa-user"></i>
-                    <%= currentUser.name %>
-                </a>
-                <a class="btn btn-sm btn-success ms-2" role="button" href="/select_survey"><i
-                        class="fa-solid fa-plus"></i>
-                    Add Survey</a>
-                <a class="btn btn-sm btn-outline-danger ms-2" href="/user/logout" role="button"> Log Out</a>
-            </div>
+                <div class="dropdown-center">
+                    <a class="btn btn-sm btn-outline-primary dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="fa-regular fa-user"></i>
+                        <%= currentUser.name %>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" role="button" href="/select_survey">
+                                <i class="fa-solid fa-plus"></i> New Survey</a></li>
+                        <li><a class="dropdown-item" href="/user_surveys/?email=<%=currentUser.email%>" role="button"><i
+                                    class="fa-solid fa-square-poll-vertical"></i> Analytics</a></li>
+                        <li><a class="dropdown-item" href="/user/logout" role="button"><i
+                                    class="fa-solid fa-right-from-bracket"></i> Log Out</a></li>
+                    </ul>
+                </div>
 
-        </div>
+
+            </div>
     </nav>
     <div class="container w-50">
         <%- include ('../partials/messages') %>
-            <h2 class="mt-4 fs-1 fw-lighter">Active Surveys</h2>
+            <h2 class="mt-4 fs-1 fw-lighter text-primary">Active Surveys</h2>
             <caption class="fw-light">Browse the survey below and answer the ones you like:</caption>
     </div>
 
     <% for(let count=0; count < surveys.length; count++) { %>
         <% if(surveys[count].type=="MCQ" ) { %>
-            <form action="#" method="POST">
-                <div class="container mt-4 w-50 mb-3">
+            <div class="container mt-4 w-50 mb-3">
+                <div class="card text-left">
+                    <div class="card-header">
+                        posted by: <%= surveys[count].creator %>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title fs-3">
+                            <%= surveys[count].title %>
+                        </h5>
+                        <select class="form-select mt-3 mb-3" size="3" id="response_<%= surveys[count]._id %>">
+                            <option value="<%= surveys[count].choices[0] %>">
+                                <%= surveys[count].choices[0] %>
+                            </option>
+                            <option value="<%= surveys[count].choices[1] %>">
+                                <%= surveys[count].choices[1] %>
+                            </option>
+                            <option value="<%= surveys[count].choices[1] %>">
+                                <%= surveys[count].choices[2] %>
+                            </option>
+                        </select>
+                        <button class="btn btn-sm btn-primary ms-2" value="<%= surveys[count]._id %>"
+                            onclick="myfunc(this)">Submit <i class="fa-solid fa-check"></i></button>
+                    </div>
+                    <div class=" card-footer text-muted">
+                        Expires: <%= (new Date((surveys[count].expires))).toString().slice(4,15) %>
+                    </div>
+                </div>
+            </div>
+            <% } else { %>
+                <div class="container mt-5 w-50 mb-3">
                     <div class="card text-left">
                         <div class="card-header">
                             posted by: <%= surveys[count].creator %>
@@ -35,50 +70,18 @@
                             <h5 class="card-title fs-3">
                                 <%= surveys[count].title %>
                             </h5>
-                            <select class="form-select mt-3 mb-3" size="3">
-                                <option selected>
-                                    <%= surveys[count].choices[0] %>
-                                </option>
-                                <option value="1">
-                                    <%= surveys[count].choices[1] %>
-                                </option>
-                                <option value="1">
-                                    <%= surveys[count].choices[2] %>
-                                </option>
-                            </select>
-                            <button class="btn btn-primary" type="button">Submit <i
-                                    class="fa-solid fa-check"></i></button>
+                            <div class="mb-3">
+                                <textarea class="form-control mt-3" id="response_<%= surveys[count]._id %>" rows="2"
+                                    placeholder="Enter Your Response here...."></textarea>
+                            </div>
+                            <button id="response_btn>" value="<%= surveys[count]._id %>" onclick="myfunc(this)"
+                                class="btn btn-sm btn-primary ms-2">Submit <i class="fa-solid fa-check"></i></button>
                         </div>
                         <div class="card-footer text-muted">
-                            Expires <%= surveys[count].expires %>
+                            Expires: <%= (new Date((surveys[count].expires))).toString().slice(4,15) %>
                         </div>
                     </div>
                 </div>
-            </form>
-            <% } else { %>
-                <form action="" method="POST">
-                    <div class="container mt-5 w-50 mb-3">
-                        <div class="card text-left">
-                            <div class="card-header">
-                                posted by: <%= surveys[count].creator %>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title fs-3">
-                                    <%= surveys[count].title %>
-                                </h5>
-                                <div class="mb-3">
-                                    <textarea class="form-control mt-3" id="exampleFormControlTextarea1" rows="2"
-                                        placeholder="Enter Your Response here...."></textarea>
-                                </div>
-                                <button class="btn btn-primary" type="button">Submit <i
-                                        class="fa-solid fa-check"></i></button>
-                            </div>
-                            <div class="card-footer text-muted">
-                                Expires <%= surveys[count].expires %>
-                            </div>
-                        </div>
-                    </div>
-                </form>
                 <% } %>
                     <% } %>
                         <%- include ('../partials/footer') %>

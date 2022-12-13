@@ -11,11 +11,11 @@ const User = require('../model/user');
 
 
 router.get('/login', forwardAuthenticated, (req, res, next) => {
-    res.render('pages/login')
+    res.render('pages/login', { title: 'EasySurveys - Login' })
 })
 
 router.get('/register', forwardAuthenticated, (req, res, next) => {
-    res.render('pages/register')
+    res.render('pages/register', { title: 'EasySurveys - Register' })
 })
 
 router.post('/register', (req, res, next) => {
@@ -37,6 +37,7 @@ router.post('/register', (req, res, next) => {
 
     if (errors.length > 0) {
         res.render('pages/register', {
+            title: 'EasySurveys - Register',
             errors,
             name,
             username,
