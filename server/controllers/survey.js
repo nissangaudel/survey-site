@@ -69,7 +69,7 @@ exports.GetSurvey = (req, res, next) => {
                 res.status(500).send({ message: err });
             })
     } else if (email) {
-        Survey.find({ email: email })
+        Survey.find({ creator: email })
             .then(survey => {
                 if (survey) {
                     res.status(200).send(survey);
