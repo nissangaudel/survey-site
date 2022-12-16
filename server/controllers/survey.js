@@ -57,7 +57,13 @@ exports.GetSurvey = (req, res, next) => {
             .then(survey => {
                 if (survey) {
                     let expiresAfter = Math.round(Math.abs((survey[0].expires - new Date()) / 86400000));
-                    survey.push({ expiresAfter: expiresAfter });
+
+                    if (survey[0].type === 'MCQ') {
+                        survey.push({ percentage: calculatePercentage(survey), expiresAfter: expiresAfter });
+                    } else {
+                        survey.push({ expiresAfter: expiresAfter });
+                    }
+
                     res.status(200).send(survey);
 
                 } else {
@@ -169,4 +175,31 @@ exports.Delete = (req, res) => {
         .catch(err => {
             res.send({ message: `${err}` });
         });
+}
+
+
+function calculatePercentage(survey) {
+
+    let responses = survey[0].responses;
+    let options = survey[0].choices;
+    let totalResponses = survey[0].totalResponses;
+
+    let option1Count = 0;
+    let option2Count = 0;
+    let option3Count = 0;
+
+    responses.forEach(response => {
+        if (response === options[0]) {
+            option1Count++;
+        }
+        if (response === options[1]) {
+            option2Count++;
+        }
+        if (response === options[2]) {
+            option3Count++;
+        }
+    });
+
+    console.log(totalResponses, responses);
+    return [Math.round((option1Count * 100) / totalResponses), Math.round((option2Count * 100) / totalResponses), Math.round((option3Count * 100) / totalResponses)];
 }
