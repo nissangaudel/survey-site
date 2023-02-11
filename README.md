@@ -23,5 +23,5 @@ Enjoy Easy Surveys!
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://github.com/nissangaudel/survey-site/blob/9db9794d65dabde3620b2ceedfd68862e74b3dff/assets/img/Easy%20Surveys%20%231.png?raw=true)
 
